@@ -1,3 +1,4 @@
+using System.IO.Abstractions;
 using GroceryStoreApi.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,7 +15,7 @@ namespace GroceryStoreApi
         {
             services.AddControllers();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddSingleton<IStorageContext>(new JsonStorageContext(@"../GroceryStoreAPI/database.json"));  //TODO : Move to configuration
+            services.AddSingleton<IStorageContext>(new JsonStorageContext(@"../GroceryStoreAPI/database.json", new FileSystem()));  //TODO : Move to configuration
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
